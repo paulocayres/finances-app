@@ -1,2 +1,2 @@
-# finances-pp
+# finances-app
 aplicativo de financas pessoais
