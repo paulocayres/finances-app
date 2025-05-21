@@ -1,0 +1,25 @@
+.custom-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  background-color: #fff;
+
+  .prefix {
+    margin-right: 8px;
+    font-size: 16px;
+    color: #333;
+    white-space: nowrap;
+  }
+
+  .native-input {
+    flex: 1;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+}

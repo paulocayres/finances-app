@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Saldo Inicial</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="form">
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label position="floating">Valor da Transação</ion-label>
+        <ion-input
+          type="text"
+          inputmode="decimal"
+          formControlName="valor"
+          [maskitoElement]="maskPredicate" 
+          [maskito]="currency">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Data</ion-label>
+        <ion-datetime formControlName="data" presentation="date"></ion-datetime>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid">
+      Salvar
+    </ion-button>
+  </form>
+</ion-content>

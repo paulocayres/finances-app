@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agenda Financeira</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label>Selecionar Mês</ion-label>
+    <ion-datetime presentation="month-year" min="2022-01-01" max="2050-12-31" [(ngModel)]="dataSelecionada"
+      (ionChange)="carregarTransacoes()">
+    </ion-datetime>
+  </ion-item>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="adicionarTransacao()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list *ngIf="transacoes && transacoes.length > 0">
+    <ion-item *ngFor="let transacao of transacoes">
+      <ion-label class="ion-text-wrap">
+        <h2>{{ transacao.descricao }}</h2>
+        <p>
+          {{ transacao.data | date: 'dd/MM/yyyy' }}<br />
+          Tipo: {{ transacao.tipo }}<br />
+          Valor: {{ transacao.valor | currency: 'BRL':'symbol':'1.2-2':'pt' }}<br />
+          Recorrência: {{ transacao.recorrencia }}
+          <ng-container *ngIf="transacao.recorrencia === 'parcelada'">
+            <br />
+            Parcela {{ transacao.numeroParcela }} de {{ transacao.numeroParcelas }}
+          </ng-container>
+        </p>
+      </ion-label>
+
+      <ion-button fill="clear" color="primary" (click)="editarTransacao(transacao)">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" color="danger" (click)="confirmarExclusao(transacao)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="resumo">
+    <ion-card-header>
+      <ion-card-title>Resumo do Mês</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Receitas: {{ resumo.receitas | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
+      <p>Despesas: {{ resumo.despesas | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
+      <p>Saldo Inicial: {{ resumo.saldoInicial | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
+      <p>Saldo Final: {{ resumo.saldoFinal | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

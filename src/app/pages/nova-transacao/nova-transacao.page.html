@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nova Transação</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelar()">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label position="stacked">Descrição</ion-label>
+      <ion-input formControlName="descricao"></ion-input>
+    </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Valor da Transação</ion-label>
+        <ion-input type="text" formControlName="valor" [maskito]="currency" [maskitoElement]="maskPredicate" inputmode="decimal"></ion-input>
+      </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Data</ion-label>
+      <ion-datetime formControlName="data" presentation="date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tipo</ion-label>
+      <ion-select formControlName="tipo">
+        <ion-select-option value="débito">Débito</ion-select-option>
+        <ion-select-option value="crédito">Crédito</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Recorrência</ion-label>
+      <ion-select formControlName="recorrencia">
+        <ion-select-option value="única">Única</ion-select-option>
+        <ion-select-option value="parcelada">Parcelada</ion-select-option>
+        <ion-select-option value="recorrente">Recorrente</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="form.get('recorrencia')?.value === 'parcelada'">
+      <ion-label position="stacked">Número de Parcelas</ion-label>
+      <ion-input
+        type="number"
+        formControlName="numeroParcelas"
+        placeholder="Ex: 12"
+      ></ion-input>
+    </ion-item>
+  </form>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="salvar()" [disabled]="form.invalid">
+    Salvar
+  </ion-button>
+</ion-content>

@@ -1,0 +1,43 @@
+.custom-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    background-color: #fff;
+
+    .prefix {
+        margin-right: 8px;
+        font-size: 16px;
+        color: #333;
+        white-space: nowrap;
+    }
+
+    .native-input {
+        flex: 1;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    ion-item.floating-label-fix {
+        ion-label {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            font-size: 12px;
+            transition: 0.2s ease;
+            color: var(--ion-color-medium);
+        }
+
+        input:focus+ion-label,
+        input:not(:placeholder-shown)+ion-label {
+            top: -8px;
+            font-size: 10px;
+            color: var(--ion-color-primary);
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Transação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="form">
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label position="stacked">Descrição</ion-label>
+        <ion-input formControlName="descricao" type="text"></ion-input>
+      </ion-item>
+
+      <br>
+      <ion-item>
+        <ion-label position="floating">Valor da Transação</ion-label>
+        <ion-input type="text" formControlName="valor" [maskito]="currency" [maskitoElement]="maskPredicate" inputmode="decimal"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Data</ion-label>
+        <ion-datetime formControlName="data" presentation="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Tipo</ion-label>
+        <ion-select formControlName="tipo">
+          <ion-select-option value="débito">Débito</ion-select-option>
+          <ion-select-option value="crédito">Crédito</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid">Salvar</ion-button>
+  </form>
+</ion-content>
