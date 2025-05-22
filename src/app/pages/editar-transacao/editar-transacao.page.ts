@@ -235,7 +235,7 @@ export class EditarTransacaoPage implements OnInit {
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
+import { maskitoNumberOptionsGenerator, maskitoParseNumber } from '@maskito/kit';
 import { MaskitoElementPredicate } from '@maskito/core';
 
 @Component({
@@ -252,30 +252,31 @@ export class EditarTransacaoPage implements OnInit {
   form!: FormGroup;
   transacao: any;
   valor: string = '';
+  tipo!: string;
 
-  
-currency = maskitoNumberOptionsGenerator({
+
+  currency = maskitoNumberOptionsGenerator({
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
     decimalSeparator: ',',
     thousandSeparator: '.',
     min: 0,
     prefix: 'R$',
-});
+  });
 
-/*currency = maskitoNumberOptionsGenerator({
-    decimalSeparator: ',',
-    thousandSeparator: '.',
-    maximumFractionDigits: 2,
-});*/
+  /*currency = maskitoNumberOptionsGenerator({
+      decimalSeparator: ',',
+      thousandSeparator: '.',
+      maximumFractionDigits: 2,
+  });*/
 
-readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
+  readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
 
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController,
     private navParams: NavParams
-  ) {  }
+  ) { }
 
   ngOnInit() {
     this.transacao = this.navParams.get('transacao');
@@ -284,6 +285,7 @@ readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonIn
       this.modalCtrl.dismiss();
       return;
     }
+
     this.valor = 'R$ ' + this.formatarParaReais(this.transacao.valor);
 
 
@@ -293,7 +295,15 @@ readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonIn
       data: [this.transacao.data, Validators.required],
       tipo: [this.transacao.tipo, Validators.required],
     });
+
+
   }
+
+  ngDoCheck() {
+    this.tipo = this.form.get('tipo')?.value;
+  }
+
+
 
   formatarParaReais(valor: number): string {
     if (typeof valor !== 'number' || isNaN(valor)) {
@@ -308,22 +318,22 @@ readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonIn
 
   async salvar() {
     if (this.form.invalid) return;
- const valorMascara = this.form.get('valor')?.value || 'R$ 0,00';
-  const valorParsed = maskitoParseNumber(valorMascara, ',');
-  
-  const dadosAtualizados = {
-    ...this.transacao,
-    ...this.form.value,
-    valor: valorParsed
-  };
+    const valorMascara = this.form.get('valor')?.value || 'R$ 0,00';
+    const valorParsed = maskitoParseNumber(valorMascara, ',');
 
-  console.log('transacao.valor (parseado):', valorParsed);
-  console.log('dados atualizados:', dadosAtualizados);
+    const dadosAtualizados = {
+      ...this.transacao,
+      ...this.form.value,
+      valor: valorParsed
+    };
 
-  await this.modalCtrl.dismiss(dadosAtualizados);
+    console.log('transacao.valor (parseado):', valorParsed);
+    console.log('dados atualizados:', dadosAtualizados);
+
+    await this.modalCtrl.dismiss(dadosAtualizados);
   }
 
-  
+
 
   cancelar() {
     this.modalCtrl.dismiss();

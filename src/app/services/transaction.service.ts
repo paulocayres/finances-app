@@ -1,45 +1,87 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { from, Observable } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
   private baseUrl = environment.apiUrl;
-  //'http://localhost:3000/transactions';
+  private auth = getAuth();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
+
+  private waitForUser(): Observable<User> {
+    return new Observable<User>((observer) => {
+      const unsubscribe = onAuthStateChanged(this.auth, user => {
+        unsubscribe();
+        if (user) {
+          observer.next(user);
+          observer.complete();
+        } else {
+          observer.error(new Error('Usuário não autenticado'));
+        }
+      });
+    });
+  }
+
+  private getAuthHeaders(): Observable<{ headers: HttpHeaders }> {
+    return this.waitForUser().pipe(
+      switchMap(user => from(user.getIdToken())),
+      map(token => ({
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        })
+      }))
+    );
+  }
 
   getAll(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/transactions/`);
+    return this.getAuthHeaders().pipe(
+      switchMap(headers =>
+        this.http.get<any[]>(`${this.baseUrl}/transactions/`, headers)
+      )
+    );
   }
 
-  atualizar(id: string, dados: any) {
-    console.log(id, dados);
-    return this.http.put(`${this.baseUrl}/transactions/${id}`, dados).toPromise();
+  atualizar(id: string, dados: any): Observable<any> {
+    return this.getAuthHeaders().pipe(
+      switchMap(headers =>
+        this.http.put(`${this.baseUrl}/transactions/${id}`, dados, headers)
+      )
+    );
   }
 
-  buscarPorId(id: string) {
-    console.log(id);
-    const response = this.http.get(`${this.baseUrl}/transactions/${id}`).toPromise();
-    console.log(response);
-    return response;
+  buscarPorId(id: string): Observable<any> {
+    return this.getAuthHeaders().pipe(
+      switchMap(headers =>
+        this.http.get(`${this.baseUrl}/transactions/${id}`, headers)
+      )
+    );
   }
 
-create(transacao: any) {
-  console.log('transacao: ',  transacao);
-  return this.http.post(`${this.baseUrl}/transactions`, transacao).toPromise();
-}
+  create(transacao: any): Observable<any> {
+    return this.getAuthHeaders().pipe(
+      switchMap(headers =>
+        this.http.post(`${this.baseUrl}/transactions`, transacao, headers)
+      )
+    );
+  }
 
   update(id: string, data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/transactions/${id}`, data);
+    return this.getAuthHeaders().pipe(
+      switchMap(headers =>
+        this.http.put(`${this.baseUrl}/transactions/${id}`, data, headers)
+      )
+    );
   }
 
-  delete(id: string){
-    console.log('servico: ' ,id)
-    const response = this.http.delete(`${this.baseUrl}/transactions/${id}`).toPromise();
-    console.log('servico response: ' ,response);
-    return response;
+  delete(id: string): Observable<any> {
+    return this.getAuthHeaders().pipe(
+      switchMap(headers =>
+        this.http.delete(`${this.baseUrl}/transactions/${id}`, headers)
+      )
+    );
   }
-
 }

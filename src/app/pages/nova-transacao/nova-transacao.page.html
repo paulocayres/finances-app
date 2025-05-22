@@ -26,7 +26,7 @@
 
     <ion-item>
       <ion-label position="stacked">Tipo</ion-label>
-      <ion-select formControlName="tipo">
+      <ion-select [(ngModel)]="tipo" formControlName="tipo">
         <ion-select-option value="débito">Débito</ion-select-option>
         <ion-select-option value="crédito">Crédito</ion-select-option>
       </ion-select>
@@ -34,7 +34,7 @@
 
     <ion-item>
       <ion-label position="stacked">Recorrência</ion-label>
-      <ion-select formControlName="recorrencia">
+      <ion-select [(ngModel)]="recorrencia" formControlName="recorrencia">
         <ion-select-option value="única">Única</ion-select-option>
         <ion-select-option value="parcelada">Parcelada</ion-select-option>
         <ion-select-option value="recorrente">Recorrente</ion-select-option>

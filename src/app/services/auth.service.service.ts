@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { getAuth, GoogleAuthProvider, signInWithRedirect, signOut, User, onAuthStateChanged, signInWithPopup, signInAnonymously, SignInMethod} from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithRedirect, signOut, User, onAuthStateChanged, signInWithPopup, signInAnonymously, SignInMethod } from 'firebase/auth';
 import { firebaseApp } from '../firebase-init';
 //import {  GoogleAuthProvider, signInWithRedirect, signOut, onAuthStateChanged, User, getAuth, Auth } from '@angular/fire/auth';
 //import { firebaseApp } from '../firebase-init';
@@ -10,21 +10,21 @@ import { firebaseApp } from '../firebase-init';
 })
 export class AuthService {
   private auth = getAuth(firebaseApp);
-  
 
-  constructor() {}
+
+  constructor() { }
 
   loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     console.log('entrou no serviço de login');
     console.log('config: ', this.auth.config.apiKey)
     console.log(this.auth);
-    console.log('firebaseApp',firebaseApp);
-    try{
+    console.log('firebaseApp', firebaseApp);
+    try {
 
-    }catch{}
-    
-    return signInWithPopup(this.auth,provider);
+    } catch { }
+
+    return signInWithPopup(this.auth, provider);
   }
 
   logout() {

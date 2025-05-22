@@ -15,6 +15,8 @@ import { MaskitoElementPredicate } from '@maskito/core';
 })
 export class NovaTransacaoPage implements OnInit {
   form!: FormGroup;
+  tipo!: string;
+  recorrencia!: string;
 
   currency = maskitoNumberOptionsGenerator({
     minimumFractionDigits: 2,
@@ -42,6 +44,9 @@ export class NovaTransacaoPage implements OnInit {
       recorrencia: ['única', Validators.required],
       numeroParcelas: [null]
     });
+
+    this.tipo = this.form.get('tipo')?.value;
+    this.recorrencia = this.form.get('recorrencia')?.value;
 
     this.form.get('recorrencia')?.valueChanges.subscribe((value) => {
       if (value === 'parcelada') {

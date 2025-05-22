@@ -9,17 +9,33 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class LoginPage {
+  loading = false;
   constructor(private auth: AuthService, private router: Router) { }
 
   async login() {
+    this.loading = true;
+    
     try {
-      await this.auth.loginWithGoogle();
-      console.log('Login bem-sucedido!');
-      this.router.navigate(['/agenda-mensal']);  // ✅ redireciona aqui
+      const result = await this.auth.loginWithGoogle();
+      //console.log('Usuário logado:', result.user);
+
+      // Pega o token JWT do Firebase para enviar na API
+      //const token = await result.user.getIdToken();
+      //console.log('Token:', token);
+
+      this.router.navigate(['/agenda-mensal']);
     } catch (error) {
-      console.error('Erro no login:', error);
+      this.showError('Erro ao fazer login. Tente novamente.');
+      console.error(error);
+    } finally {
+      this.loading = false;
     }
   }
+
+  showError(message: string) {
+    alert(message);  // ou um toast mais elegante
+  }
+
 
   async logout() {
     try {
@@ -43,3 +59,5 @@ export class LoginPage {
   }
 
 }
+
+

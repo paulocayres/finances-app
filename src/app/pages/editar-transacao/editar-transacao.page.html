@@ -15,7 +15,8 @@
       <br>
       <ion-item>
         <ion-label position="floating">Valor da Transação</ion-label>
-        <ion-input type="text" formControlName="valor" [maskito]="currency" [maskitoElement]="maskPredicate" inputmode="decimal"></ion-input>
+        <ion-input type="text" formControlName="valor" [maskito]="currency" [maskitoElement]="maskPredicate"
+          inputmode="decimal"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,7 +26,7 @@
 
       <ion-item>
         <ion-label position="stacked">Tipo</ion-label>
-        <ion-select formControlName="tipo">
+        <ion-select [(ngModel)]="tipo" formControlName="tipo">
           <ion-select-option value="débito">Débito</ion-select-option>
           <ion-select-option value="crédito">Crédito</ion-select-option>
         </ion-select>
