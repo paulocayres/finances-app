@@ -21,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations:[AppComponent],
   imports: [ BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'pt-BR' }, provideNgxMask(), MaskitoDirective],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'pt-BR' }, MaskitoDirective,
+],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
