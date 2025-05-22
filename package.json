@@ -33,6 +33,7 @@
     "@maskito/angular": "^3.8.0",
     "@maskito/core": "^3.8.0",
     "@maskito/kit": "^3.8.0",
+    "angular-new-router": "github:angular/router",
     "firebase": "^11.8.0",
     "ionicons": "^7.0.0",
     "ngx-mask": "^19.0.7",

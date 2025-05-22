@@ -23,7 +23,9 @@ export class LoginPage {
       //const token = await result.user.getIdToken();
       //console.log('Token:', token);
 
-      this.router.navigate(['/']);
+      this.router.navigateByUrl('/');
+
+
     } catch (error) {
       this.showError('Erro ao fazer login. Tente novamente.');
       console.error(error);

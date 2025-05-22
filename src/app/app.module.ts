@@ -16,11 +16,13 @@ import pt from '@angular/common/locales/pt';
 import { MaskitoDirective } from '@maskito/angular';
 registerLocaleData(pt);
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
   declarations:[AppComponent],
-  imports: [ BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [ BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'pt-BR' }, MaskitoDirective,
 ],
   bootstrap: [AppComponent],
