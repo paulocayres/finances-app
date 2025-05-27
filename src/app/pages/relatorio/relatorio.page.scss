@@ -1,0 +1,12 @@
+.date-range-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap; /* se não couber, quebra linha */
+  justify-content: space-between;
+}
+
+.date-range-container ion-item {
+  flex: 1 1 45%; /* permite reduzir o tamanho */
+  max-width: 150px; /* limita a largura */
+  font-size: 12px; /* fonte menor */
+}

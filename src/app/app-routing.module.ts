@@ -15,13 +15,15 @@ const routes: Routes = [
       { path: 'editar-transacao', loadChildren: () => import('./pages/editar-transacao/editar-transacao.module').then(m => m.EditarTransacaoPageModule) },
       { path: 'editar-transacao/:id', loadChildren: () => import('./pages/editar-transacao/editar-transacao.module').then(m => m.EditarTransacaoPageModule) },
       { path: 'nova-transacao', loadChildren: () => import('./pages/nova-transacao/nova-transacao.module').then(m => m.NovaTransacaoPageModule) },
-      { path: 'saldo-inicial', loadChildren: () => import('./pages/saldo-inicial/saldo-inicial.module').then(m => m.SaldoInicialPageModule) }
+      { path: 'saldo-inicial', loadChildren: () => import('./pages/saldo-inicial/saldo-inicial.module').then(m => m.SaldoInicialPageModule) },
+      { path: 'conta-investimento', loadChildren: () => import('./pages/conta-investimento/conta-investimento.module').then(m => m.ContaInvestimentoPageModule) }
     ]
   },
   { 
     path: 'login', 
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) 
   },
+
 ];
 
 @NgModule({

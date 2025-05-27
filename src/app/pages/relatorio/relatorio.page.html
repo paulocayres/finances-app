@@ -1,13 +1,64 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>relatorio</ion-title>
+    <ion-title>Relatório Gráfico</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">relatorio</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <form (ngSubmit)="gerarRelatorio()" [formGroup]="filtroForm">
+
+    <div class="date-range-container">
+      <ion-item style="flex: 1;">
+        <ion-label position="stacked">Data Inicial</ion-label>
+        <ion-datetime formControlName="dataInicial" min="2022-01-01" max="2050-12-31" presentation="month-year">
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item style="flex: 1;">
+        <ion-label position="stacked">Data Final</ion-label>
+        <ion-datetime formControlName="dataFinal" min="2022-01-01" max="2050-12-31" presentation="month-year">
+        </ion-datetime>
+      </ion-item>
+    </div>
+
+    <ion-button expand="full" type="submit">Gerar Relatório</ion-button>
+  </form>
+
+  <ion-card *ngIf="evolucao.length">
+    <ion-card-header>
+      <ion-card-title>Evolução Financeira</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ngx-charts-line-chart [view]="[400, 300]" [scheme]="colorScheme" [results]="lineChartData" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [showXAxisLabel]="true" [xAxisLabel]="'Mês'" [showYAxisLabel]="true"
+        [yAxisLabel]="'Valor'">
+      </ngx-charts-line-chart>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="resumo">
+    <ion-card-header>
+      <ion-card-title>Resumo do Período</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Despesas:</ion-label>
+        <ion-note slot="end">R$ {{ resumo.despesas | number:'1.2-2' }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Receitas:</ion-label>
+        <ion-note slot="end">R$ {{ resumo.receitas | number:'1.2-2' }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Saldo Final:</ion-label>
+        <ion-note slot="end">R$ {{ resumo.saldoFinal | number:'1.2-2' }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Saldo Conta Investimento:</ion-label>
+        <ion-note slot="end">R$ {{ resumo.saldoContaInvestimento | number:'1.2-2' }}</ion-note>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
