@@ -56,7 +56,7 @@ private getAuthHeaders(): Observable<{ headers: HttpHeaders }> {
   get(): Observable<any> {
     return this.getAuthHeaders().pipe(
       switchMap(headers =>
-        this.http.get(`${this.baseUrl}/conta-investimento`, headers)
+        this.http.get(`${this.baseUrl}/investment-balance`, headers)
       )
     );
   }
@@ -64,7 +64,7 @@ private getAuthHeaders(): Observable<{ headers: HttpHeaders }> {
   upsert(data: { valor: number; data: string }): Observable<any> {
     return this.getAuthHeaders().pipe(
       switchMap(headers =>
-        this.http.put(`${this.baseUrl}/conta-investimento`, data, headers)
+        this.http.put(`${this.baseUrl}/investment-balance`, data, headers)
       )
     );
   }

@@ -14,10 +14,16 @@
       <ion-input formControlName="descricao"></ion-input>
     </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Valor da Transação</ion-label>
-        <ion-input type="text" formControlName="valor" [maskito]="currency" [maskitoElement]="maskPredicate" inputmode="decimal"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Valor da Transação</ion-label>
+      <ion-input 
+        type="text" 
+        formControlName="valor" 
+        [maskito]="currency" 
+        [maskitoElement]="maskPredicate"
+        inputmode="decimal">
+      </ion-input>
+    </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Data</ion-label>
@@ -26,7 +32,7 @@
 
     <ion-item>
       <ion-label position="stacked">Tipo</ion-label>
-      <ion-select [(ngModel)]="tipo" formControlName="tipo">
+      <ion-select formControlName="tipo">
         <ion-select-option value="débito">Débito</ion-select-option>
         <ion-select-option value="crédito">Crédito</ion-select-option>
       </ion-select>
@@ -34,7 +40,7 @@
 
     <ion-item>
       <ion-label position="stacked">Recorrência</ion-label>
-      <ion-select [(ngModel)]="recorrencia" formControlName="recorrencia">
+      <ion-select formControlName="recorrencia">
         <ion-select-option value="única">Única</ion-select-option>
         <ion-select-option value="parcelada">Parcelada</ion-select-option>
         <ion-select-option value="recorrente">Recorrente</ion-select-option>
@@ -43,15 +49,38 @@
 
     <ion-item *ngIf="form.get('recorrencia')?.value === 'parcelada'">
       <ion-label position="stacked">Número de Parcelas</ion-label>
-      <ion-input
-        type="number"
-        formControlName="numeroParcelas"
-        placeholder="Ex: 12"
-      ></ion-input>
+      <ion-input 
+        type="number" 
+        formControlName="numeroParcelas" 
+        placeholder="Ex: 12">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="form.get('recorrencia')?.value === 'recorrente'">
+      <ion-label position="stacked">Periodicidade</ion-label>
+      <ion-select formControlName="unidadePeriodo">
+        <ion-select-option value="dia">Diário</ion-select-option>
+        <ion-select-option value="semana">Semanal</ion-select-option>
+        <ion-select-option value="mês">Mensal</ion-select-option>
+        <ion-select-option value="ano">Anual</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="form.get('recorrencia')?.value === 'recorrente'">
+      <ion-label position="stacked">Número de Períodos</ion-label>
+      <ion-input 
+        type="number" 
+        formControlName="quantidadePeriodo" 
+        placeholder="Ex: Em caso mensal, informar quantos meses.">
+      </ion-input>
     </ion-item>
   </form>
 
-  <ion-button expand="block" class="ion-margin-top" (click)="salvar()" [disabled]="form.invalid">
+  <ion-button 
+    expand="block" 
+    class="ion-margin-top" 
+    (click)="salvar()" 
+    [disabled]="form.invalid">
     Salvar
   </ion-button>
 </ion-content>

@@ -33,7 +33,7 @@ export class NovaTransacaoPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -42,7 +42,9 @@ export class NovaTransacaoPage implements OnInit {
       data: ['', Validators.required],
       tipo: ['débito', Validators.required],
       recorrencia: ['única', Validators.required],
-      numeroParcelas: [null]
+      unidadePeriodo: ['mês', Validators.required],
+      quantidadePeriodo: ['mês', Validators.required],
+      numeroParcelas: [null, Validators.required]
     });
 
     this.tipo = this.form.get('tipo')?.value;
@@ -56,6 +58,23 @@ export class NovaTransacaoPage implements OnInit {
         this.form.get('numeroParcelas')?.setValue(null);
       }
       this.form.get('numeroParcelas')?.updateValueAndValidity();
+
+      if (value === 'recorrente') {
+        this.form.get('unidadePeriodo')?.setValidators([Validators.required, Validators.min(2)]);
+      } else {
+        this.form.get('unidadePeriodo')?.clearValidators();
+        this.form.get('unidadePeriodo')?.setValue(null);
+      }
+
+      if (value === 'recorrente') {
+        this.form.get('quantidadePeriodo')?.setValidators([Validators.required, Validators.min(2)]);
+      } else {
+        this.form.get('quantidadePeriodo')?.clearValidators();
+        this.form.get('quantidadePeriodo')?.setValue(null);
+      }
+      this.form.get('quantidadePeriodo')?.updateValueAndValidity();
+
+
     });
   }
 
@@ -64,7 +83,7 @@ export class NovaTransacaoPage implements OnInit {
 
     const valorStr = this.form.get('valor')?.value;
     const valorParsed = maskitoParseNumber(valorStr, ',');
-    
+
     const transacao = {
       ...this.form.value,
       valor: valorParsed
