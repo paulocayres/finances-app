@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // IMPORTAÇÕES DO NGX-MASK
 import { MaskitoOptions} from '@maskito/core';
 import { MaskitoDirective } from '@maskito/angular';
+import { AppHeaderModule } from 'src/app/components/app-header/app-header.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MaskitoDirective } from '@maskito/angular';
     IonicModule,
     ContaInvestimentoPageRoutingModule,
     MaskitoDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppHeaderModule
     // IMPORTAÇÃO NECESSÁRIA
   ],
   declarations: [ContaInvestimentoPage]

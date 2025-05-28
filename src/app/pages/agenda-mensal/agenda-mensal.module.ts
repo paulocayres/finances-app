@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AgendaMensalPageRoutingModule } from './agenda-mensal-routing.module';
 
 import { AgendaMensalPage } from './agenda-mensal.page';
+import { AppHeaderModule } from 'src/app/components/app-header/app-header.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AgendaMensalPageRoutingModule
+    AgendaMensalPageRoutingModule,
+    AppHeaderModule
   ],
   declarations: [AgendaMensalPage]
 })

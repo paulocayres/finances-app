@@ -8,6 +8,7 @@ import { RelatorioPageRoutingModule } from './relatorio-routing.module';
 
 import { RelatorioPage } from './relatorio.page';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AppHeaderModule } from 'src/app/components/app-header/app-header.module';
 
 
 @NgModule({
@@ -15,8 +16,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     CommonModule,
     IonicModule,
     RelatorioPageRoutingModule,
-ReactiveFormsModule, NgxChartsModule, FormsModule
+    ReactiveFormsModule, NgxChartsModule, FormsModule,
+    AppHeaderModule
   ],
   declarations: [RelatorioPage]
 })
-export class RelatorioPageModule {}
+export class RelatorioPageModule { }
