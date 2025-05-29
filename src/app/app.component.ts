@@ -21,11 +21,11 @@ export class AppComponent {
       const response = await firstValueFrom(this.service.get());
 
       if (!response || response.saldo === null) {
-        this.navCtrl.navigateRoot('/saldo-inicial');
+        this.navCtrl.navigateRoot('/tabs/saldo-inicial');
       }
     } catch (error) {
       console.error('Erro ao buscar saldo inicial:', error);
-      this.navCtrl.navigateRoot('/saldo-inicial');
+      this.navCtrl.navigateRoot('/tabs/saldo-inicial');
     }
   }
 }
