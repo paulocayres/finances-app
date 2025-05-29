@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service.service';
 import { Router } from '@angular/router';
+import { Capacitor } from '@capacitor/core';
+
+
 
 @Component({
   selector: 'app-login',
@@ -24,7 +27,45 @@ async ionViewWillEnter() {
     this.logged = await this.auth.isLoggedIn();  // ou 'user', ou qualquer flag que você salve
   }*/
 
-  async login() {
+
+async login() {
+  this.loading = true;
+
+  try {
+    if (Capacitor.isNativePlatform()) {
+      // Executando no mobile, usar redirect
+      await this.auth.loginWithRedirect();
+    } else {
+      // Executando no navegador, usar popup
+      const result = await this.auth.loginWithGoogle();
+      console.log('Usuário logado:', result.user);
+      
+      // Pega o token JWT do Firebase para enviar na API
+      const token = await result.user.getIdToken();
+      console.log('Token:', token);
+    }
+
+    this.router.navigateByUrl('/');
+
+  } catch (error) {
+    this.showError('Erro ao fazer login. Tente novamente.');
+    console.error(error);
+  } finally {
+    this.loading = false;
+    this.logged = true;
+  }
+}
+
+showError(message: string) {
+  // Aqui você pode implementar um alerta ou um toast para exibir o erro
+  console.error(message);
+  alert(message); // Ou use alguma biblioteca de notificação, como Ionic Toast
+}
+
+
+
+
+  /*async login() {
     this.loading = true;
 
     try {
@@ -49,7 +90,7 @@ async ionViewWillEnter() {
 
   showError(message: string) {
     alert(message);  // ou um toast mais elegante
-  }
+  }*/
 
 
   async logout() {

@@ -10,12 +10,14 @@ import { firebaseApp } from '../firebase-init';
 })
 export class AuthService {
   private auth = getAuth(firebaseApp);
+  private provider = new GoogleAuthProvider();
 
-
-  constructor() { }
+  constructor() {
+    
+   }
 
   loginWithGoogle() {
-    const provider = new GoogleAuthProvider();
+    
     console.log('entrou no serviço de login');
     console.log('config: ', this.auth.config.apiKey)
     console.log(this.auth);
@@ -24,8 +26,13 @@ export class AuthService {
 
     } catch { }
 
-    return signInWithPopup(this.auth, provider);
+    return signInWithPopup(this.auth, this.provider);
   }
+
+  loginWithRedirect() {
+    return signInWithRedirect(this.auth, this.provider);
+  }
+
 
   logout() {
     return signOut(this.auth);
