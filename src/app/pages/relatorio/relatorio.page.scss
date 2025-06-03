@@ -10,3 +10,17 @@
   max-width: 150px; /* limita a largura */
   font-size: 12px; /* fonte menor */
 }
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ngx-charts line {
+  animation: dash 1s ease-in-out forwards;
+}
+

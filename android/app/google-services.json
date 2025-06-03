@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "332663746330",
+    "project_id": "cayresfinances-app",
+    "storage_bucket": "cayresfinances-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332663746330:android:31097a5f3bb868532d86a3",
+        "android_client_info": {
+          "package_name": "com.cayres.financesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332663746330-9gn8p973n10j3td3gnavo19dta7kb1ao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cayres.financesapp",
+            "certificate_hash": "a919baf04022c91a019f05a6881377cc650086a3"
+          }
+        },
+        {
+          "client_id": "332663746330-qob0kvkatdt971oua8spla21irii76mv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHAgAs_xQAJRXe8ypMvGB-kbBk0yEJ3cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332663746330-qob0kvkatdt971oua8spla21irii76mv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

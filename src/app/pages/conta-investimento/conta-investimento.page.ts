@@ -8,7 +8,7 @@ import { firstValueFrom } from 'rxjs';
 import { contaInvestimentoService } from 'src/app/services/conta-investimento.service';
 
 @Component({
-  selector: 'app-initial-balance',
+  selector: 'app-conta-investimento',
   templateUrl: './conta-Investimento.page.html',
   styleUrls: ['./conta-Investimento.page.scss'],
   standalone: false

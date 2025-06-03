@@ -39,6 +39,8 @@ export class AuthService {
     });
   }
 
+  
+
   isLoggedIn(): Promise<boolean> {
     return this.getCurrentUser().then(user => !!user);
   }

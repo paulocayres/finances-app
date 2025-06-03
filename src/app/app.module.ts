@@ -17,13 +17,15 @@ import { MaskitoDirective } from '@maskito/angular';
 registerLocaleData(pt);
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
 
 
 
 @NgModule({
   declarations:[AppComponent],
   imports: [ BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, NgxChartsModule, FormsModule ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'pt-BR' }, MaskitoDirective,
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'pt-BR' }, MaskitoDirective, provideAnimations()
 ],
   bootstrap: [AppComponent],
 

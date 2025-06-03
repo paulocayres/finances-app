@@ -9,6 +9,7 @@ import { RelatorioPageRoutingModule } from './relatorio-routing.module';
 import { RelatorioPage } from './relatorio.page';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppHeaderModule } from 'src/app/components/app-header/app-header.module';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
