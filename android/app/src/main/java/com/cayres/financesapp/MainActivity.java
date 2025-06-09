@@ -1,4 +1,4 @@
-package com.paulocayres.financeapp;
+package com.cayres.financesapp;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { maskitoNumberOptionsGenerator, maskitoParseNumber } from '@maskito/kit';
 import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { firstValueFrom } from 'rxjs';
-import { contaInvestimentoService } from 'src/app/services/conta-investimento.service';
+import { ContaInvestimentoService } from 'src/app/services/conta-investimento.service';
 
 @Component({
   selector: 'app-conta-investimento',
@@ -27,7 +27,7 @@ export class ContaInvestimentoPage implements OnInit {
   readonly maskPredicate: MaskitoElementPredicate = async (el) => (el as HTMLIonInputElement).getInputElement();
 
   constructor(
-    private service: contaInvestimentoService,
+    private service: ContaInvestimentoService,
     private navCtrl: NavController,
     private toastCtrl: ToastController,
     private fb: FormBuilder

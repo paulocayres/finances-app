@@ -1,23 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button *ngIf="logged" [routerLink]="['/']">
-        <ion-icon name="arrow-back-circle"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Autenticação</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
-  <ng-container *ngIf="statusChecked">
-    <ion-button *ngIf="!logged" expand="block" (click)="login()" [disabled]="loading">
-      <ion-spinner *ngIf="loading"></ion-spinner>
-      <span *ngIf="!loading">Login com Google</span>
-    </ion-button>
-    <ion-button *ngIf="logged" expand="block" (click)="logout()" [disabled]="loading">
-      <ion-spinner *ngIf="loading"></ion-spinner>
-      <span *ngIf="!loading">Sair</span>
-    </ion-button>
-  </ng-container>
+  <ion-button *ngIf="!logged" expand="block" (click)="login()" [disabled]="loading">
+    <ion-spinner *ngIf="loading"></ion-spinner>
+    <span *ngIf="!loading">Login com Google</span>
+  </ion-button>
+  <ion-button *ngIf="logged" expand="block" (click)="logout()" [disabled]="loading">
+    <ion-spinner *ngIf="loading"></ion-spinner>
+    <span *ngIf="!loading">Sair</span>
+  </ion-button>
 </ion-content>

@@ -1,36 +1,33 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { AuthService } from './auth.service.service';
 
 @Injectable({ providedIn: 'root' })
 export class InitialBalanceService {
   private baseUrl = environment.apiUrl;
-  private auth = getAuth();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
-private waitForUser(): Promise<any> {
-  return new Promise(resolve => {
-    const unsubscribe = onAuthStateChanged(this.auth, user => {
-      unsubscribe();
-      resolve(user);
-    });
-  });
-}
-
-private getAuthHeaders(): Observable<{ headers: HttpHeaders }> {
-  return from(this.waitForUser()).pipe(
-    switchMap(user => from(user.getIdToken())),
-    map(token => ({
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
+  private getAuthHeaders(): Observable<{ headers: HttpHeaders }> {
+    return from(this.authService.getIdToken()).pipe(
+      map(token => {
+        if (!token) {
+          throw new Error('Usuário não autenticado ou token indisponível');
+        }
+        return {
+          headers: new HttpHeaders({
+            Authorization: `Bearer ${token}`
+          })
+        };
       })
-    }))
-  );
-}
+    );
+  }
 
   get(): Observable<any> {
     return this.getAuthHeaders().pipe(

@@ -1,3 +1,13 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ng-container *ngIf="authResolved; else loading">
+    <ion-router-outlet></ion-router-outlet>
+  </ng-container>
+
+  <ng-template #loading>
+    <ion-content class="ion-padding" fullscreen="false">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+    </ion-content>
+  </ng-template>
 </ion-app>

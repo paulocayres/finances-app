@@ -1,0 +1,186 @@
+--------- beginning of main
+06-05 20:27:30.868  1293 27081 I NearbySharing: [RECEIVE_PROVIDER] stop called.
+06-05 20:27:30.868  1293 27081 I NearbySharing: Advertising has stopped
+06-05 20:27:30.870  1293 27081 I NearbySharing: Start advertising with mode BACKGROUND certificate visibility SELF_SHARE data usage preference ONLINE, and bt advertising false with vendorId 0
+06-05 20:27:30.870  1293 27081 I NearbySharing: Uwb feature is off.
+06-05 20:27:30.870  1293 27081 I NearbySharing: [RECEIVE_PROVIDER] start called.
+06-05 20:27:30.870  1293 27081 I NearbySharing: Advertising has started with mode BACKGROUND, Bt enabled : false
+06-05 20:27:44.518  1433 27067 W androidtc: Timeout in ResponseReceiver.get(): textlinks
+06-05 20:27:58.107   544 26122 I adbd    : host-16: read failed: Success
+06-05 20:27:58.119   544 26123 I adbd    : host-16: connection terminated: write failed
+06-05 20:27:58.132   544   544 I adbd    : BlockingConnectionAdapter(host-16): stopping
+06-05 20:27:58.135   544   544 I adbd    : BlockingConnectionAdapter(host-16): stopped
+06-05 20:27:58.137   544   544 I adbd    : BlockingConnectionAdapter(host-16): destructing
+06-05 20:27:58.137   544   544 I adbd    : BlockingConnectionAdapter(host-16): already stopped
+06-05 20:27:58.487   544 26120 I adbd    : host-13: read failed: Success
+06-05 20:27:58.497   544 26120 I adbd    : host-13: connection terminated: read failed
+06-05 20:27:58.512   544 27086 I adbd    : host-18: read thread spawning
+06-05 20:27:58.520   544 27086 I adbd    : host-18: read failed: Success
+06-05 20:27:58.520   544 27086 I adbd    : host-18: connection terminated: read failed
+06-05 20:27:58.524   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopping
+06-05 20:27:58.541   544 27088 I adbd    : host-18: write thread spawning
+06-05 20:27:58.545   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopped
+06-05 20:27:58.545   544   544 I adbd    : BlockingConnectionAdapter(host-18): stopping
+06-05 20:27:58.546   544   544 I adbd    : BlockingConnectionAdapter(host-18): stopped
+06-05 20:27:58.546   544   544 I adbd    : BlockingConnectionAdapter(host-13): destructing
+06-05 20:27:58.547   544   544 I adbd    : BlockingConnectionAdapter(host-13): already stopped
+06-05 20:27:58.547   544   544 I adbd    : BlockingConnectionAdapter(host-18): destructing
+06-05 20:27:58.547   544   544 I adbd    : BlockingConnectionAdapter(host-18): already stopped
+--------- beginning of system
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: Failure to read from host clipboard
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: java.io.EOFException
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.readFully(EmulatorClipboardMonitor.java:230)
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.receiveMessage(EmulatorClipboardMonitor.java:108)
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.lambda$new$0(EmulatorClipboardMonitor.java:147)
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.$r8$lambda$I665hZBuK4A9PXws4VUFbdMwhbk(EmulatorClipboardMonitor.java:0)
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)
+06-05 20:27:58.611   712   933 W EmulatorClipboardMonitor: 	at java.lang.Thread.run(Thread.java:1119)
+06-05 20:27:58.873  1084  1093 W rkstack.process: Reducing the number of considered missed Gc histogram windows from 3069 to 100
+06-05 20:27:59.001   544 27091 I adbd    : host-16: read thread spawning
+06-05 20:27:59.004   544 27092 I adbd    : host-16: write thread spawning
+06-05 20:27:59.007   544 27093 I adbd    : host-13: read thread spawning
+06-05 20:27:59.012   544 27094 I adbd    : host-13: write thread spawning
+06-05 20:27:59.051   544   544 I adbd    : adbd_auth: loading keys from /data/misc/adb/adb_keys
+06-05 20:28:00.067   545   550 D android.hardware.uwb: uwb_default_hal::uwb_chip:  <-- [96, 1, 0, 1, 1]
+06-05 20:28:00.184   712  1480 D uwb     : uwb_uci_jni_rust::notification_manager_android: UCI JNI: core notification callback.
+06-05 20:28:00.193   712  1480 D uwb     : uwb_uci_jni_rust::notification_manager_android: UCI JNI: callback onDeviceStatusNotificationReceived
+06-05 20:28:00.214   712  1480 D NativeUwbManager: onDeviceStatusNotificationReceived(1, default)
+06-05 20:28:00.232   712  1480 D UwbServiceCore: onDeviceStatusNotificationReceived(): deviceState = 1, current country code = US
+06-05 20:28:00.245   712  1480 I UwbServiceCore: updateDeviceState(): deviceState = READY, current internal adapter state = 1
+06-05 20:28:00.245   712  1480 D UwbServiceCore: updateState(): state=1, chipId=default
+06-05 20:28:00.245   712  1480 D UwbServiceCore: chipIdToStateMap = {default=1}
+06-05 20:28:00.252   712  1480 D UwbServiceCore: notifyAdapterState(): adapterState = 1, reason = 3
+06-05 20:28:00.295   544   544 W adbd    : timeout expired while reading data after flushing socket, closing
+06-05 20:28:01.286   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:29:34.760  1293 27081 I NearbyPresence: (REDACTED) [NP_EVENT] %s
+06-05 20:29:51.347   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:30:56.879   544 27093 I adbd    : host-13: read failed: Success
+06-05 20:30:56.879   544 27093 I adbd    : host-13: connection terminated: read failed
+06-05 20:30:56.880   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopping
+06-05 20:30:56.880   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopped
+06-05 20:30:56.880   544   544 I adbd    : BlockingConnectionAdapter(host-13): destructing
+06-05 20:30:56.880   544   544 I adbd    : BlockingConnectionAdapter(host-13): already stopped
+06-05 20:30:57.804   544 27091 I adbd    : host-16: read failed: Success
+06-05 20:30:57.855   544 27091 I adbd    : host-16: connection terminated: read failed
+06-05 20:30:57.978   544   544 I adbd    : BlockingConnectionAdapter(host-16): stopping
+06-05 20:30:58.071   544   544 I adbd    : BlockingConnectionAdapter(host-16): stopped
+06-05 20:30:58.072   544   544 I adbd    : BlockingConnectionAdapter(host-16): destructing
+06-05 20:30:58.075   544   544 I adbd    : BlockingConnectionAdapter(host-16): already stopped
+06-05 20:30:58.212   544 27174 I adbd    : host-18: read thread spawning
+06-05 20:30:58.217   544 27175 I adbd    : host-18: write thread spawning
+06-05 20:30:58.281   544 27176 I adbd    : host-13: read thread spawning
+06-05 20:30:58.310   544 27177 I adbd    : host-13: write thread spawning
+06-05 20:30:58.311   545   550 D android.hardware.uwb: uwb_default_hal::uwb_chip:  <-- [96, 1, 0, 1, 1]
+06-05 20:30:58.369   544   544 W adbd    : timeout expired while reading data after flushing socket, closing
+06-05 20:30:58.473   544   544 I adbd    : adbd_auth: loading keys from /data/misc/adb/adb_keys
+06-05 20:30:58.644   712  2002 E IPCThreadState: binder thread pool (31 threads) starved for 683 ms
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: Failure to read from host clipboard
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: java.io.EOFException
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.readFully(EmulatorClipboardMonitor.java:230)
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.receiveMessage(EmulatorClipboardMonitor.java:108)
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.lambda$new$0(EmulatorClipboardMonitor.java:147)
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.$r8$lambda$I665hZBuK4A9PXws4VUFbdMwhbk(EmulatorClipboardMonitor.java:0)
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)
+06-05 20:30:58.777   712   933 W EmulatorClipboardMonitor: 	at java.lang.Thread.run(Thread.java:1119)
+06-05 20:30:58.986   712  1480 D uwb     : uwb_uci_jni_rust::notification_manager_android: UCI JNI: core notification callback.
+06-05 20:30:59.052   712  1480 D uwb     : uwb_uci_jni_rust::notification_manager_android: UCI JNI: callback onDeviceStatusNotificationReceived
+06-05 20:30:59.106   712  1480 D NativeUwbManager: onDeviceStatusNotificationReceived(1, default)
+06-05 20:30:59.143   712  1480 D UwbServiceCore: onDeviceStatusNotificationReceived(): deviceState = 1, current country code = US
+06-05 20:30:59.169   712  1480 I UwbServiceCore: updateDeviceState(): deviceState = READY, current internal adapter state = 1
+06-05 20:30:59.170   712  1480 D UwbServiceCore: updateState(): state=1, chipId=default
+06-05 20:30:59.173   712  1480 D UwbServiceCore: chipIdToStateMap = {default=1}
+06-05 20:30:59.204   712  1480 D UwbServiceCore: notifyAdapterState(): adapterState = 1, reason = 3
+06-05 20:30:59.283  1084  1093 W rkstack.process: Suspending all threads took: 65.857ms
+06-05 20:30:59.917  1084  1102 I rkstack.process: Waiting for a blocking GC ProfileSaver
+06-05 20:31:00.468  1084  1102 I rkstack.process: WaitForGcToComplete blocked ProfileSaver on Background for 552.045ms
+06-05 20:31:02.135   712  2002 E IPCThreadState: binder thread pool (31 threads) starved for 114 ms
+06-05 20:31:03.214   712  2002 E IPCThreadState: binder thread pool (31 threads) starved for 743 ms
+06-05 20:31:04.214   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:31:05.215   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:33:00.199 21341 21380 I Finsky:background: [87] nxy.run(64): Stats for Executor: LightweightExecutor sxb@b544492[Running, pool size = 3, active threads = 0, queued tasks = 0, completed tasks = 377]
+06-05 20:33:00.201 21341 21380 I Finsky:background: [87] nxy.run(64): Stats for Executor: bgExecutor sxb@ddb6c8c[Running, pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 340]
+06-05 20:33:00.202 21341 21380 I Finsky:background: [87] nxy.run(64): Stats for Executor: BlockingExecutor sxb@abf44b6[Running, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 39]
+06-05 20:34:30.398   712   933 E ClipboardService: Denying clipboard access to com.android.chrome, application is not in focus nor is it a system service for user 0
+06-05 20:34:30.414   712   933 E ClipboardService: Denying clipboard access to com.android.chrome, application is not in focus nor is it a system service for user 0
+06-05 20:34:32.464   712   933 E ClipboardService: Denying clipboard access to com.android.chrome, application is not in focus nor is it a system service for user 0
+06-05 20:35:59.246   544 27176 I adbd    : host-13: read failed: Success
+06-05 20:35:59.247   544 27176 I adbd    : host-13: connection terminated: read failed
+06-05 20:35:59.248   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopping
+06-05 20:35:59.249   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopped
+06-05 20:35:59.249   544   544 I adbd    : BlockingConnectionAdapter(host-13): destructing
+06-05 20:35:59.249   544   544 I adbd    : BlockingConnectionAdapter(host-13): already stopped
+06-05 20:35:59.477   544 27174 I adbd    : host-18: read failed: Success
+06-05 20:35:59.487   544 27174 I adbd    : host-18: connection terminated: read failed
+06-05 20:35:59.489   544   544 I adbd    : BlockingConnectionAdapter(host-18): stopping
+06-05 20:35:59.489   544 27257 I adbd    : host-16: write thread spawning
+06-05 20:35:59.496   544   544 I adbd    : BlockingConnectionAdapter(host-18): stopped
+06-05 20:35:59.496   544   544 I adbd    : BlockingConnectionAdapter(host-18): destructing
+06-05 20:35:59.496   544   544 I adbd    : BlockingConnectionAdapter(host-18): already stopped
+06-05 20:35:59.499   544 27256 I adbd    : host-16: read thread spawning
+06-05 20:35:59.501   544 27258 I adbd    : host-13: read thread spawning
+06-05 20:35:59.502   544 27259 I adbd    : host-13: write thread spawning
+06-05 20:35:59.513   544   544 I adbd    : adbd_auth: loading keys from /data/misc/adb/adb_keys
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: Failure to read from host clipboard
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: java.io.EOFException
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.readFully(EmulatorClipboardMonitor.java:230)
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.receiveMessage(EmulatorClipboardMonitor.java:108)
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.lambda$new$0(EmulatorClipboardMonitor.java:147)
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.$r8$lambda$I665hZBuK4A9PXws4VUFbdMwhbk(EmulatorClipboardMonitor.java:0)
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)
+06-05 20:35:59.521   712   933 W EmulatorClipboardMonitor: 	at java.lang.Thread.run(Thread.java:1119)
+06-05 20:36:00.525   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:36:01.347   545   550 D android.hardware.uwb: uwb_default_hal::uwb_chip:  <-- [96, 1, 0, 1, 1]
+06-05 20:36:01.360   712  1480 D uwb     : uwb_uci_jni_rust::notification_manager_android: UCI JNI: core notification callback.
+06-05 20:36:01.360   712  1480 D uwb     : uwb_uci_jni_rust::notification_manager_android: UCI JNI: callback onDeviceStatusNotificationReceived
+06-05 20:36:01.361   712  1480 D NativeUwbManager: onDeviceStatusNotificationReceived(1, default)
+06-05 20:36:01.361   712  1480 D UwbServiceCore: onDeviceStatusNotificationReceived(): deviceState = 1, current country code = US
+06-05 20:36:01.361   712  1480 I UwbServiceCore: updateDeviceState(): deviceState = READY, current internal adapter state = 1
+06-05 20:36:01.362   712  1480 D UwbServiceCore: updateState(): state=1, chipId=default
+06-05 20:36:01.362   712  1480 D UwbServiceCore: chipIdToStateMap = {default=1}
+06-05 20:36:01.363   712  1480 D UwbServiceCore: notifyAdapterState(): adapterState = 1, reason = 3
+06-05 20:36:01.369   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:37:46.677   712   933 E ClipboardService: Denying clipboard access to com.android.chrome, application is not in focus nor is it a system service for user 0
+06-05 20:37:46.712   712   933 D androidtc: Initializing SystemTextClassifier, type = System
+06-05 20:37:46.794   712   933 E ClipboardService: Denying clipboard access to com.android.chrome, application is not in focus nor is it a system service for user 0
+06-05 20:37:46.797   712   933 D androidtc: Initializing SystemTextClassifier, type = System
+06-05 20:37:46.806   712   933 E ClipboardService: Denying clipboard access to com.android.chrome, application is not in focus nor is it a system service for user 0
+06-05 20:39:12.400 27468 27468 W atrace  : type=1400 audit(0.0:2534): avc:  denied  { write } for  name="enable" dev="tracefs" ino=19680823 scontext=u:r:shell:s0 tcontext=u:object_r:debugfs_tracing_debug:s0 tclass=file permissive=0
+06-05 20:39:12.472 27466 27466 V studio.transport: Server listening on unix:@AndroidStudioTransport port:1
+06-05 20:39:16.688   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:39:50.568  1293 27081 I NearbySharing: [RECEIVE_PROVIDER] stop called.
+06-05 20:39:50.619  1293 27081 I NearbySharing: Advertising has stopped
+06-05 20:39:55.555   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:40:30.046   544 27258 I adbd    : host-13: read failed: Success
+06-05 20:40:30.046   544 27258 I adbd    : host-13: connection terminated: read failed
+06-05 20:40:30.047   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopping
+06-05 20:40:30.047   544   544 I adbd    : BlockingConnectionAdapter(host-13): stopped
+06-05 20:40:30.047   544   544 I adbd    : BlockingConnectionAdapter(host-13): destructing
+06-05 20:40:30.047   544   544 I adbd    : BlockingConnectionAdapter(host-13): already stopped
+06-05 20:40:30.255   544 27256 I adbd    : host-16: read failed: Success
+06-05 20:40:30.256   544 27256 I adbd    : host-16: connection terminated: read failed
+06-05 20:40:30.262   544   544 I adbd    : BlockingConnectionAdapter(host-16): stopping
+06-05 20:40:30.264   544 27489 I adbd    : host-18: read thread spawning
+06-05 20:40:30.265   544 27491 I adbd    : host-18: write thread spawning
+06-05 20:40:30.271   544   544 I adbd    : BlockingConnectionAdapter(host-16): stopped
+06-05 20:40:30.272   544   544 I adbd    : BlockingConnectionAdapter(host-16): destructing
+06-05 20:40:30.273   544   544 I adbd    : BlockingConnectionAdapter(host-16): already stopped
+06-05 20:40:30.274   544 27492 I adbd    : host-13: read thread spawning
+06-05 20:40:30.275   544 27493 I adbd    : host-13: write thread spawning
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: Failure to read from host clipboard
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: java.io.EOFException
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.readFully(EmulatorClipboardMonitor.java:230)
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.receiveMessage(EmulatorClipboardMonitor.java:108)
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.lambda$new$0(EmulatorClipboardMonitor.java:147)
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor.$r8$lambda$I665hZBuK4A9PXws4VUFbdMwhbk(EmulatorClipboardMonitor.java:0)
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: 	at com.android.server.clipboard.EmulatorClipboardMonitor$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)
+06-05 20:40:30.283   712   933 W EmulatorClipboardMonitor: 	at java.lang.Thread.run(Thread.java:1119)
+06-05 20:40:30.298   544   544 I adbd    : adbd_auth: loading keys from /data/misc/adb/adb_keys
+06-05 20:40:32.097   545   550 D android.hardware.uwb: uwb_default_hal::uwb_chip:  <-- [96, 1, 0, 1, 1]
+06-05 20:40:32.099   544   544 W adbd    : timeout expired while reading data after flushing socket, closing
+06-05 20:40:37.535   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:40:38.535   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:40:39.536   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:40:39.539 27466 27466 D studio.transport: Profiler:Signal received 1
+06-05 20:40:39.539 27466 27466 D studio.transport: Profiler:TerminationService shutting down with signal 1
+06-05 20:40:42.546   544   544 W adbd    : timeout expired while flushing socket, closing
+06-05 20:40:47.608   544   544 W adbd    : timeout expired while flushing socket, closing

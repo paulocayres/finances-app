@@ -11,72 +11,47 @@ import { Router } from '@angular/router';
 export class LoginPage {
   loading = false;
   logged = false;
-  statusChecked = false;
-  constructor(private auth: AuthService, private router: Router) { }
 
-async ionViewWillEnter() {
-  this.statusChecked = false;
-  this.logged = await this.auth.isLoggedIn();
-  this.statusChecked = true;
-}
+  constructor(private auth: AuthService, private router: Router) {}
 
-  /*async ngOnInit() {
-    this.logged = await this.auth.isLoggedIn();  // ou 'user', ou qualquer flag que você salve
-  }*/
+  async ionViewWillEnter() {
+    this.logged = await this.auth.isLoggedIn();
+  }
 
   async login() {
     this.loading = true;
 
     try {
-      const result = await this.auth.loginWithGoogle();
-      //console.log('Usuário logado:', result.user);
+      await this.auth.signInWithGoogle();
 
-      // Pega o token JWT do Firebase para enviar na API
-      //const token = await result.user.getIdToken();
-      //console.log('Token:', token);
-
-      this.router.navigateByUrl('/');
-
+      const token = await this.auth.getIdToken();
+      if (token) {
+        console.log('Login concluído, token obtido.');
+        this.router.navigateByUrl('/');
+      } else {
+        throw new Error('Token não disponível após login.');
+      }
 
     } catch (error) {
-      this.showError('Erro ao fazer login. Tente novamente.');
-      console.error(error);
+      console.error('Erro ao fazer login:', error);
+      alert('Erro ao fazer login. Tente novamente.');
     } finally {
       this.loading = false;
-      this.logged = true;
     }
   }
 
-  showError(message: string) {
-    alert(message);  // ou um toast mais elegante
-  }
-
-
   async logout() {
-    this.loading=true;
+    this.loading = true;
     try {
-      console.log('entro no logout');
-      await this.auth.logout();
-      // O redirecionamento será automático após login com redirect.
-    } catch (err) {
-      console.error('Erro no login:', err);
+      await this.auth.signOut();
+      this.router.navigateByUrl('/login');
     } finally {
       this.loading = false;
-      this.logged = false;
     }
   }
 
   async getUser() {
-    try {
-      console.log('entro no user');
-      const user = await this.auth.isLoggedIn();
-      console.log(user);
-      // O redirecionamento será automático após login com redirect.
-    } catch (err) {
-      console.error('Erro no login:', err);
-    }
+    const user = await this.auth.getCurrentUser();
+    console.log('Usuário atual:', user);
   }
-
 }
-
-

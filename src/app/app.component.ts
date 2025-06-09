@@ -1,63 +1,44 @@
-import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { InitialBalanceService } from './services/initial-balance.service';
-import { firstValueFrom } from 'rxjs';
-import { contaInvestimentoService } from './services/conta-investimento.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service.service';
+import { Router } from '@angular/router';
+import { filter, take } from 'rxjs/operators';
+
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
   standalone: false
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  authResolved = false; // controla exibição do conteúdo principal
+
   constructor(
-    private navCtrl: NavController,
-    private saldoService: InitialBalanceService,
-    private investimentoService: contaInvestimentoService
-  ) {
-    this.initializeApp();
-  }
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
-  async initializeApp() {
-    try {
-      console.log('Iniciando busca de saldo...');
-      const saldo = await firstValueFrom(this.saldoService.get()).catch(() => null);
-      console.log('Saldo obtido:', saldo);
+  async ngOnInit() {
 
-      const investimento = await firstValueFrom(this.investimentoService.get()).catch(() => null);
-      console.log('Investimento obtido:', investimento);
+    if (Capacitor.isNativePlatform()) {
+      await StatusBar.setOverlaysWebView({ overlay: false }); // Impede que a WebView invada a status bar
+      await StatusBar.setStyle({ style: Style.Dark });         // Altere para Style.Light se for fundo escuro
+      await StatusBar.setBackgroundColor({ color: '#ffffff' }); // Opcional: define a cor da status bar
+    }
 
-      if (saldo === null) {
-        console.log('Chamando upsert para saldo...');
-        const data = {
-          valor: 0,
-          data: new Date('2025-01-01').toISOString() // Garante formato ISO válido
-        };
+    // Aguarda o primeiro estado de autenticação
+    await this.authService.authState$
+      .pipe(filter(u => u !== undefined), take(1))
+      .toPromise();
 
-        this.saldoService.upsert(data).subscribe({
-          next: response => console.log('Upsert realizado com sucesso:', response),
-          error: err => console.error('Erro ao chamar upsert:', err)
-        });
+    this.authResolved = true;
 
-      }
-
-      if (investimento === null) {
-        console.log('Chamando upsert para investimento...');
-        const data = {
-          valor: 0,
-          data: new Date('2025-01-01').toISOString() // Garante formato ISO válido
-        };
-
-        this.investimentoService.upsert(data).subscribe({
-          next: response => console.log('Upsert realizado com sucesso:', response),
-          error: err => console.error('Erro ao chamar upsert:', err)
-        });
-
-      }
-
-    } catch (error) {
-      console.error('Erro inesperado:', error);
-      this.navCtrl.navigateRoot('/tabs/saldo-inicial');
+    const isLogged = await this.authService.isLoggedIn();
+    if (!isLogged) {
+      this.router.navigateByUrl('/login');
     }
   }
 }
