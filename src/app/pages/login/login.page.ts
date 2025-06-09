@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginPage {
   loading = false;
   logged = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, private alertCtrl: AlertController) {}
 
   async ionViewWillEnter() {
     this.logged = await this.auth.isLoggedIn();
@@ -47,8 +48,30 @@ export class LoginPage {
       this.router.navigateByUrl('/login');
     } finally {
       this.loading = false;
+      this.logged = false;
     }
   }
+
+  async confirmLogout() {
+  const alert = await this.alertCtrl.create({
+    header: 'Sair do app?',
+    message: 'Deseja realmente sair?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Sair',
+        handler: () => {
+          this.logout();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
 
   async getUser() {
     const user = await this.auth.getCurrentUser();
