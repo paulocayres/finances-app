@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.cayres.financesapp',
-  appName: 'finances-app',
+  appName: 'Cayres Finances',
   webDir: 'www',
 
   plugins: {
