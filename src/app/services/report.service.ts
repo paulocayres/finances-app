@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { from, Observable } from 'rxjs';
+import { firstValueFrom, from, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service.service';
+import { InitialBalanceService } from './initial-balance.service';
+import { ContaInvestimentoService } from './conta-investimento.service';
+
+
 
 @Injectable({ providedIn: 'root' })
 export class ReportService {
@@ -11,7 +15,9 @@ export class ReportService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private initialBalanceService: InitialBalanceService,
+    private contaInvestimentoService:ContaInvestimentoService
   ) {}
 
   private getAuthHeaders(): Observable<{ headers: HttpHeaders }> {
@@ -30,9 +36,37 @@ export class ReportService {
     );
   }
 
-  getAnaliticoMensal(year: number, month: number): Observable<any> {
+  async getAnaliticoMensal(year: number, month: number): Promise<Observable<any>> {
     console.log('Entrou no serviço: ', year, month);
     console.log('API URL atual:', environment.apiUrl);
+    objeto: Object
+
+ 
+  try {
+    const saldo = await firstValueFrom(this.initialBalanceService.get());
+    console.log('Saldo inicial já existe:', saldo);
+  } catch (err) {
+    console.warn('Saldo inicial não encontrado, criando com valor 0...');
+    const data = new Date();
+    await firstValueFrom(this.initialBalanceService.upsert({
+      valor: 0,
+      data: data.toISOString()
+    }));
+  }
+
+  try {
+    const conta = await firstValueFrom(this.contaInvestimentoService.get());
+    console.log('Conta investimento já existe:', conta);
+  } catch (err) {
+    console.warn('Conta investimento não encontrada, criando com valor 0...');
+    const data = new Date();
+    await firstValueFrom(this.contaInvestimentoService.upsert({
+      valor: 0,
+      data: data.toISOString()
+    }));
+  }
+
+    
     return this.getAuthHeaders().pipe(
       switchMap(headers =>
         this.http.get(`${this.baseUrl}/reports/monthly-agenda`, {

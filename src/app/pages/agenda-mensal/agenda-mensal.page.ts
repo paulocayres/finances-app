@@ -28,20 +28,27 @@ export class AgendaMensalPage implements OnInit {
     private service: TransactionService,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.carregarTransacoes();
   }
 
-  carregarTransacoes() {
-    const data = new Date(this.dataSelecionada);
-    const mes = data.getMonth() + 1;
-    const ano = data.getFullYear();
+async carregarTransacoes() {
+  const data = new Date(this.dataSelecionada);
+  const mes = data.getMonth() + 1;
+  const ano = data.getFullYear();
 
-    this.relatorioService.getAnaliticoMensal(ano, mes).subscribe({
-      next: (response) => {
+  try {
+    const obs$ = await this.relatorioService.getAnaliticoMensal(ano, mes);
+
+    obs$.subscribe({
+      next: (response: any) => {
         this.transacoes = response.transacoes || [];
+
+        if (this.transacoes.length === 0) {
+          this.exibirToast('Nenhuma transação cadastrada neste mês.', 'warning');
+        }
 
         let receitas = 0;
         let despesas = 0;
@@ -65,7 +72,12 @@ export class AgendaMensalPage implements OnInit {
         this.exibirToast('Erro ao carregar transações.', 'danger');
       }
     });
+  } catch (err) {
+    this.exibirToast('Erro ao preparar carregamento de transações.', 'danger');
+    console.error('Erro no getAnaliticoMensal:', err);
   }
+}
+
 
   async editarTransacao(transacao: any) {
     if (transacao.recorrencia !== 'única') {
@@ -103,7 +115,10 @@ export class AgendaMensalPage implements OnInit {
         {
           text: 'Excluir',
           role: 'destructive',
-          handler: () => this.excluirTransacao(transacao._id)
+          handler: () => {
+            this.excluirTransacao(transacao._id);
+            this.carregarTransacoes();
+          }
         }
       ]
     });
@@ -115,6 +130,7 @@ export class AgendaMensalPage implements OnInit {
     this.service.delete(id).subscribe({
       next: () => {
         this.transacoes = this.transacoes.filter(t => t._id !== id);
+        this.carregarTransacoes();
         this.exibirToast('Transação excluída com sucesso.');
       },
       error: () => {
