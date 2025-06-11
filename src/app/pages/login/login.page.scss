@@ -1,9 +1,11 @@
-ion-icon {
-  color: blue;
-}
-
 .login-page {
   --background: #f4f5f8;
+
+    ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .login-container {
     display: flex;

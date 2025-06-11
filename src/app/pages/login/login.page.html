@@ -1,36 +1,51 @@
-<ion-content class="ion-padding login-page">
-  <div class="login-container">
-    <ion-icon name="person-circle-outline" class="login-icon"></ion-icon>
-    <h2 *ngIf="!logged">Bem-vindo</h2>
-    <p *ngIf="!logged">Entre com sua conta Google para continuar</p>
-    <h2 *ngIf="logged">Até a Próxima</h2>
-    <p *ngIf="logged">Clique em sair para continuar</p>
 
-    <ion-button color="primary" expand="block" (click)="login()" [disabled]="loading" *ngIf="!logged">
-      <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
-      <ion-icon name="logo-google" slot="start"></ion-icon>
-      <span *ngIf="!loading">Login com Google</span>
-    </ion-button>
+  <ion-content class="login-page fullscreen">
+    <div class="login-container">
+ 
 
-    <ion-grid *ngIf="logged">
-      <ion-row>
-        <ion-col>
-          <ion-button color="light" expand="block" (click)="confirmLogout()" [disabled]="loading">
-            <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
-            <ion-icon name="log-out-outline" slot="start"></ion-icon>
-            <span *ngIf="!loading">Sair</span>
-          </ion-button>
-        </ion-col>
+      <ng-container *ngIf="!logged">
+        <ion-icon name="person-circle-outline" class="login-icon"></ion-icon>
+        <h2>Bem-vindo</h2>
+        <p>Entre com sua conta Google para continuar</p>
+        <ion-button color="primary" expand="block" (click)="login()" [disabled]="loading">
+          <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          <span *ngIf="!loading">Login com Google</span>
+        </ion-button>
+      </ng-container>
 
-        <ion-col>
-          <ion-button color="primary" expand="block" routerLink="../tabs/agenda-mensal" [disabled]="loading">
-            <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
-            <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
-            <span *ngIf="!loading">Voltar</span>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-  </div>
-</ion-content>
+      <ng-container *ngIf="logged">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <ion-icon name="person-circle-outline" class="login-icon"></ion-icon>
+        <h2>Até a Próxima</h2>
+        <p>Clique em sair ou voltar</p>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button color="light" expand="block" (click)="confirmLogout()" [disabled]="loading">
+                <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
+                <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                <span *ngIf="!loading">Sair</span>
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button color="primary" expand="block" routerLink="../tabs/agenda-mensal" [disabled]="loading">
+                <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
+                <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+                <span *ngIf="!loading">Voltar</span>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+    </div>
+  </ion-content>
