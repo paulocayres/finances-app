@@ -4,55 +4,43 @@
 
   <form [formGroup]="filtroForm" (ngSubmit)="gerarRelatorio()">
 
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Mês Inicial</ion-label>
-            <ion-select formControlName="mesInicial" interface="popover">
-              <ion-select-option *ngFor="let mes of meses" [value]="mes.valor">
-                {{ mes.nome }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Mês Final</ion-label>
-            <ion-select formControlName="mesFinal" interface="popover">
-              <ion-select-option *ngFor="let mes of meses" [value]="mes.valor">
-                {{ mes.nome }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+    <div class="date-range-container">
+  <ion-item>
+    <ion-label position="floating">Mês Inicial</ion-label>
+    <ion-select formControlName="mesInicial" interface="popover">
+      <ion-select-option *ngFor="let mes of meses" [value]="mes.valor">
+        {{ mes.nome }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
 
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Ano Inicial</ion-label>
-            <ion-select formControlName="anoInicial" interface="popover">
-              <ion-select-option *ngFor="let ano of anos" [value]="ano">
-                {{ ano }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
+  <ion-item>
+    <ion-label position="floating">Ano Inicial</ion-label>
+    <ion-select formControlName="anoInicial" interface="popover">
+      <ion-select-option *ngFor="let ano of anos" [value]="ano">
+        {{ ano }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
 
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Ano Final</ion-label>
-            <ion-select formControlName="anoFinal" interface="popover">
-              <ion-select-option *ngFor="let ano of anos" [value]="ano">
-                {{ ano }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-item>
+    <ion-label position="floating">Mês Final</ion-label>
+    <ion-select formControlName="mesFinal" interface="popover">
+      <ion-select-option *ngFor="let mes of meses" [value]="mes.valor">
+        {{ mes.nome }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
 
+  <ion-item>
+    <ion-label position="floating">Ano Final</ion-label>
+    <ion-select formControlName="anoFinal" interface="popover">
+      <ion-select-option *ngFor="let ano of anos" [value]="ano">
+        {{ ano }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+</div>
 
 
     <ion-button expand="block" type="submit" [disabled]="filtroForm.invalid" class="ion-margin-top">
