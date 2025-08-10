@@ -1,0 +1,37 @@
+BUG - App volta para tela de login sem deslogar, após muito tempo de inatividade.
+
+
+Melhoria - Funcionalidade de alteração de todos os tipos de transação.
+Opções de update:
+1 - Todas as transações da série.
+2 - Somente a transação atual.
+3 - Todas as transações da atual em diante.
+Obs: As transações atualizadas deve receber um novo groupId
+
+
+BUG - Relatório não pega o saldo inicial do período selecionado.
+Considera que o saldo cadastrado no banco de dados vale no mês e ano iniciais do período.
+Deveria evoluir desde a data do saldo cadastrado até o período selecionado no relatório.
+Opções de solução do problema.
+1 - Cada mês guardar seu próprio saldo final.
+2 - Realizar a evolução completa para auferir o saldo.
+
+
+Melhoria - Funcionalidade de Meta.
+Usuário cadastra uma meta financeira com valor e data alvo.
+O app estima, baseado nas transações cadastradas, quando esta meta seria atendida.
+
+
+BUG - Fucionalidade de Saldo Inicial precisa aceitar valores negativos.
+
+
+Melhoria - Funcionalidade de Conciliação
+Importar extrato bancário em arquivo CSV.
+Permitir que o usuário faça o vínculo com as transações da agenda mensal.
+
+
+Melhoria - Criptografar os dados antes de gravar no banco de dados.
+Descriptografar antes de entregar para o app.
+
+
+

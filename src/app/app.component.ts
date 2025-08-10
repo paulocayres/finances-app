@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
     const isLogged = await this.authService.isLoggedIn();
     if (!isLogged) {
       this.router.navigateByUrl('/login');
+    } else {
+      this.router.navigateByUrl('/agenda', { replaceUrl: true });
     }
   }
 }
