@@ -54,10 +54,11 @@ async carregarTransacoes() {
         let despesas = 0;
 
         this.transacoes.forEach(t => {
+          const valor = Number(t.valor);
           if (t.tipo === 'crédito') {
-            receitas += t.valor;
+            receitas += valor;
           } else {
-            despesas += t.valor;
+            despesas += valor;
           }
         });
 
