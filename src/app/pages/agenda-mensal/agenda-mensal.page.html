@@ -23,9 +23,13 @@
           Tipo: {{ transacao.tipo }}<br />
           Valor: {{ transacao.valor | currency: 'BRL':'symbol':'1.2-2':'pt' }}<br />
           Recorrência: {{ transacao.recorrencia }}
-          <ng-container *ngIf="transacao.recorrencia === 'parcelada'">
+          <ng-container *ngIf="transacao.recorrencia === 'parcelada' || transacao.recorrencia === 'recorrente'">
             <br />
             Parcela {{ transacao.numeroParcela }} de {{ transacao.numeroParcelas }}
+          </ng-container>
+          <ng-container *ngIf="transacao.recorrencia === 'recorrente'">
+            <br />
+            Período: {{ transacao.unidadePeriodo }}
           </ng-container>
         </p>
       </ion-label>
