@@ -1,36 +1,92 @@
 <app-header [title]="'Agenda Mensal'"></app-header>
 
-<ion-content class="ion-padding">
+<!-- Seletor de mês e ano centralizado com legenda à esquerda e fonte escura -->
+<div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
+  <span style="margin-right: 50px; font-size: 1rem; color: #222; font-weight: 500; min-width: 90px; text-align: right;">
+    Selecione:
+  </span>
+  <ion-datetime
+    display-format="MM/YYYY"
+    picker-format="MM/YYYY"
+    [(ngModel)]="dataSelecionada"
+    (ionChange)="carregarTransacoes()"
+    presentation="month-year"
+    style="max-width: 180px; font-size: 0.95rem;"
+    [yearValues]="[2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050]">
+  </ion-datetime>
+</div>
 
-  <ion-item>
-    <ion-label>Selecionar Mês</ion-label>
-    <ion-datetime presentation="month-year" min="2022-01-01" max="2050-12-31" [(ngModel)]="dataSelecionada"
-      (ionChange)="carregarTransacoes()">
-    </ion-datetime>
-  </ion-item>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="adicionarTransacao()">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+<ion-content class="ion-padding" style="font-size: 0.85rem;">
 
-  <ion-list *ngIf="transacoes && transacoes.length > 0">
-    <ion-item *ngFor="let transacao of transacoes">
+  <ion-card *ngIf="resumo" style="width: 100%; box-sizing: border-box;">
+    <ion-card-header>
+      <ion-card-title style="font-size: 1rem;">
+        <ion-icon name="calendar-outline" style="vertical-align: middle; margin-right: 8px;"></ion-icon>
+        Resumo do Mês
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label color="medium" style="font-size: 0.85rem;">Saldo Inicial</ion-label>
+            <h2 style="color: #2b7a0b; font-size: 1rem;">{{ resumo.saldoInicial | currency: 'BRL':'symbol':'1.2-2':'pt' }}</h2>
+          </ion-col>
+          <ion-col>
+            <ion-label color="medium" style="font-size: 0.85rem;">Receitas</ion-label>
+            <h2 style="color: #1e90ff; font-size: 1rem;">{{ resumo.receitas | currency: 'BRL':'symbol':'1.2-2':'pt' }}</h2>
+          </ion-col>
+          <ion-col>
+            <ion-label color="medium" style="font-size: 0.85rem;">Despesas</ion-label>
+            <h2 style="color: #e74c3c; font-size: 1rem;">{{ resumo.despesas | currency: 'BRL':'symbol':'1.2-2':'pt' }}</h2>
+          </ion-col>
+          <ion-col>
+            <ion-label color="medium" style="font-size: 0.85rem;">Saldo Final</ion-label>
+            <h2 [style.color]="resumo.saldoFinal >= 0 ? '#2b7a0b' : '#e74c3c'" style="font-size: 1rem;">
+              {{ resumo.saldoFinal | currency: 'BRL':'symbol':'1.2-2':'pt' }}
+            </h2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="transacoes && transacoes.length > 0" style="width: 100%;">
+    <ion-list-header>
+      <ion-label style="font-size: 0.85rem;">
+        <ion-icon name="list-outline" style="vertical-align: middle; margin-right: 8px;"></ion-icon>
+        Transações do Mês
+      </ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let transacao of transacoes" style="font-size: 0.85rem;">
       <ion-label class="ion-text-wrap">
-        <h2>{{ transacao.descricao }}</h2>
+        <h2 style="font-weight: 600; font-size: 0.95rem;">{{ transacao.descricao }}</h2>
         <p>
-          {{ transacao.data | date: 'dd/MM/yyyy' }}<br />
-          Tipo: {{ transacao.tipo }}<br />
-          Valor: {{ transacao.valor | currency: 'BRL':'symbol':'1.2-2':'pt' }}<br />
-          Recorrência: {{ transacao.recorrencia }}
-          <ng-container *ngIf="transacao.recorrencia === 'parcelada' || transacao.recorrencia === 'recorrente'">
-            <br />
-            Parcela {{ transacao.numeroParcela }} de {{ transacao.numeroParcelas }}
-          </ng-container>
-          <ng-container *ngIf="transacao.recorrencia === 'recorrente'">
-            <br />
-            Período: {{ transacao.unidadePeriodo }}
-          </ng-container>
+          <ion-chip color="primary" style="margin-right: 8px; font-size: 0.85rem;">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-label>{{ transacao.data | date: 'dd/MM/yyyy' }}</ion-label>
+          </ion-chip>
+          <ion-chip [color]="transacao.tipo === 'crédito' ? 'success' : 'danger'" style="margin-right: 8px; font-size: 0.85rem;">
+            <ion-label>{{ transacao.tipo | titlecase }}</ion-label>
+          </ion-chip>
+          <ion-chip color="medium" style="font-size: 0.85rem;">
+            <ion-label>
+              {{ transacao.valor | currency: 'BRL':'symbol':'1.2-2':'pt' }}
+            </ion-label>
+          </ion-chip>
+          <br />
+          <span *ngIf="transacao.recorrencia !== 'única'" style="font-size: 0.85rem;">
+            <ion-icon name="repeat-outline"></ion-icon>
+            Recorrência: {{ transacao.recorrencia }}
+            <ng-container *ngIf="transacao.recorrencia === 'parcelada' || transacao.recorrencia === 'recorrente'">
+              <br />
+              Parcela {{ transacao.numeroParcela }} de {{ transacao.numeroParcelas }}
+            </ng-container>
+            <ng-container *ngIf="transacao.recorrencia === 'recorrente'">
+              <br />
+              Período: {{ transacao.unidadePeriodo }}
+            </ng-container>
+          </span>
         </p>
       </ion-label>
 
@@ -44,16 +100,13 @@
     </ion-item>
   </ion-list>
 
-  <ion-card *ngIf="resumo">
-    <ion-card-header>
-      <ion-card-title>Resumo do Mês</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Receitas: {{ resumo.receitas | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
-      <p>Despesas: {{ resumo.despesas | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
-      <p>Saldo Inicial: {{ resumo.saldoInicial | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
-      <p>Saldo Final: {{ resumo.saldoFinal | currency: 'BRL':'symbol':'1.2-2':'pt' }}</p>
-    </ion-card-content>
-  </ion-card>
+  <ion-list *ngIf="!transacoes || transacoes.length === 0" style="width: 100%;">
+    <ion-item>
+      <ion-label color="medium" style="font-size: 0.85rem;">
+        <ion-icon name="information-circle-outline" style="vertical-align: middle; margin-right: 8px;"></ion-icon>
+        Nenhuma transação cadastrada neste mês.
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
