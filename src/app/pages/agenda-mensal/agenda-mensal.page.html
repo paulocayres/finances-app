@@ -1,7 +1,7 @@
 <app-header [title]="'Agenda Mensal'"></app-header>
 
 <!-- Seletor de mês e ano centralizado com legenda à esquerda e fonte escura -->
-<div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
+<!-- <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
   <span style="margin-right: 50px; font-size: 1rem; color: #222; font-weight: 500; min-width: 90px; text-align: right;">
     Selecione:
   </span>
@@ -14,7 +14,13 @@
     style="max-width: 180px; font-size: 0.95rem;"
     [yearValues]="[2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050]">
   </ion-datetime>
-</div>
+</div> -->
+  <ion-item>
+    <ion-label>Selecionar Mês</ion-label>
+    <ion-datetime presentation="month-year" min="2022-01-01" max="2050-12-31" [(ngModel)]="dataSelecionada"
+      (ionChange)="carregarTransacoes()">
+    </ion-datetime>
+  </ion-item>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="adicionarTransacao()">
