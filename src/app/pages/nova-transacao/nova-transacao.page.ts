@@ -38,13 +38,13 @@ export class NovaTransacaoPage implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       descricao: ['', Validators.required],
-      valor: ['R$ 0,00', Validators.required],
+      valor: [null, Validators.required],
       data: ['', Validators.required],
       tipo: ['débito', Validators.required],
       recorrencia: ['única', Validators.required],
-      unidadePeriodo: ['mês', Validators.required],
-      quantidadePeriodo: ['mês', Validators.required],
-      numeroParcelas: [null, Validators.required]
+      unidadePeriodo: ['mensal'],
+      quantidadePeriodo: [null],
+      numeroParcelas: [null]
     });
 
     this.tipo = this.form.get('tipo')?.value;

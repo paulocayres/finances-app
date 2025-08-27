@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaskitoDirective } from '@maskito/angular';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +20,7 @@ import { MaskitoDirective } from '@maskito/angular';
     EditarTransacaoPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MaskitoDirective
+    MaskitoDirective,
   ],
   declarations: [EditarTransacaoPage],
 })

@@ -14,7 +14,7 @@
       <ion-input formControlName="descricao"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label position="floating">Valor da Transação</ion-label>
       <ion-input 
         type="text" 
@@ -23,11 +23,17 @@
         [maskitoElement]="maskPredicate"
         inputmode="decimal">
       </ion-input>
+    </ion-item> -->
+    <ion-item>
+      <ion-label position="stacked">Valor da Transação</ion-label>
+      <ion-input type="text" formControlName="valor" [maskito]="currency" [maskitoElement]="maskPredicate"
+        inputmode="decimal" placeholder="R$ 0,00">
+      </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Data</ion-label>
-      <ion-datetime formControlName="data" presentation="date" max="2040-12-31"></ion-datetime>
+      <ion-datetime formControlName="data" presentation="date" max="2050-12-31"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -49,10 +55,7 @@
 
     <ion-item *ngIf="form.get('recorrencia')?.value === 'parcelada'">
       <ion-label position="stacked">Número de Parcelas</ion-label>
-      <ion-input 
-        type="number" 
-        formControlName="numeroParcelas" 
-        placeholder="Ex: 12">
+      <ion-input type="number" formControlName="numeroParcelas" placeholder="Ex: 12">
       </ion-input>
     </ion-item>
 
@@ -68,19 +71,13 @@
 
     <ion-item *ngIf="form.get('recorrencia')?.value === 'recorrente'">
       <ion-label position="stacked">Número de Períodos</ion-label>
-      <ion-input 
-        type="number" 
-        formControlName="quantidadePeriodo" 
+      <ion-input type="number" formControlName="quantidadePeriodo"
         placeholder="Ex: Em caso mensal, informar quantos meses.">
       </ion-input>
     </ion-item>
   </form>
 
-  <ion-button 
-    expand="block" 
-    class="ion-margin-top" 
-    (click)="salvar()" 
-    [disabled]="form.invalid">
+  <ion-button expand="block" class="ion-margin-top" (click)="salvar()" [disabled]="form.invalid">
     Salvar
   </ion-button>
 </ion-content>

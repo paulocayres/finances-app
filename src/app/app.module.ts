@@ -24,7 +24,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations:[AppComponent],
-  imports: [ BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, NgxChartsModule, FormsModule ],
+  imports: [ BrowserModule, IonicModule.forRoot(),AppRoutingModule, HttpClientModule, ReactiveFormsModule, NgxChartsModule, FormsModule ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'pt-BR' }, MaskitoDirective, provideAnimations()
 ],
   bootstrap: [AppComponent],
