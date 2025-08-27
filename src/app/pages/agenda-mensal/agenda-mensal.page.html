@@ -16,6 +16,12 @@
   </ion-datetime>
 </div>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="adicionarTransacao()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 <ion-content class="ion-padding" style="font-size: 0.85rem;">
 
   <ion-card *ngIf="resumo" style="width: 100%; box-sizing: border-box;">
