@@ -17,8 +17,8 @@ export class ReportService {
     private http: HttpClient,
     private authService: AuthService,
     private initialBalanceService: InitialBalanceService,
-    private contaInvestimentoService:ContaInvestimentoService
-  ) {}
+    private contaInvestimentoService: ContaInvestimentoService
+  ) { }
 
   private getAuthHeaders(): Observable<{ headers: HttpHeaders }> {
     return from(this.authService.getIdToken()).pipe(
@@ -41,32 +41,32 @@ export class ReportService {
     console.log('API URL atual:', environment.apiUrl);
     objeto: Object
 
- 
-  try {
-    const saldo = await firstValueFrom(this.initialBalanceService.get());
-    console.log('Saldo inicial já existe:', saldo);
-  } catch (err) {
-    console.warn('Saldo inicial não encontrado, criando com valor 0...');
-    const data = new Date();
-    await firstValueFrom(this.initialBalanceService.upsert({
-      valor: 0,
-      data: data.toISOString()
-    }));
-  }
 
-  try {
-    const conta = await firstValueFrom(this.contaInvestimentoService.get());
-    console.log('Conta investimento já existe:', conta);
-  } catch (err) {
-    console.warn('Conta investimento não encontrada, criando com valor 0...');
-    const data = new Date();
-    await firstValueFrom(this.contaInvestimentoService.upsert({
-      valor: 0,
-      data: data.toISOString()
-    }));
-  }
+    try {
+      const saldo = await firstValueFrom(this.initialBalanceService.get());
+      console.log('Saldo inicial já existe:', saldo);
+    } catch (err) {
+      console.warn('Saldo inicial não encontrado, criando com valor 0...');
+      const data = new Date();
+      await firstValueFrom(this.initialBalanceService.upsert({
+        valor: 0,
+        data: data.toISOString()
+      }));
+    }
 
-    
+    try {
+      const conta = await firstValueFrom(this.contaInvestimentoService.get());
+      console.log('Conta investimento já existe:', conta);
+    } catch (err) {
+      console.warn('Conta investimento não encontrada, criando com valor 0...');
+      const data = new Date();
+      await firstValueFrom(this.contaInvestimentoService.upsert({
+        valor: 0,
+        data: data.toISOString()
+      }));
+    }
+
+
     return this.getAuthHeaders().pipe(
       switchMap(headers =>
         this.http.get(`${this.baseUrl}/reports/monthly-agenda`, {
@@ -75,7 +75,7 @@ export class ReportService {
             .set('year', year.toString())
             .set('month', month.toString())
         })
-        
+
       )
     );
   }
