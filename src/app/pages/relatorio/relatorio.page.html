@@ -79,13 +79,13 @@
 
               <ion-col size="6" class="ion-text-center">
                 <ion-label color="medium" style="font-size: 0.85rem;">Receitas</ion-label>
-                <h2 style="color: #1e90ff; font-size: 1rem;">{{ resumo?.receitas | currency: 'BRL':'symbol':'1.2-2':'pt'
+                <h2 style="color: #1e90ff; font-size: 1rem;">{{ resumo.receitas | currency: 'BRL':'symbol':'1.2-2':'pt'
                   }}
                 </h2>
               </ion-col>
               <ion-col size="6" class="ion-text-center">
                 <ion-label color="medium" style="font-size: 0.85rem;">Despesas</ion-label>
-                <h2 style="color: #e74c3c; font-size: 1rem;">{{ resumo?.despesas | currency: 'BRL':'symbol':'1.2-2':'pt'
+                <h2 style="color: #e74c3c; font-size: 1rem;">{{ resumo.despesas | currency: 'BRL':'symbol':'1.2-2':'pt'
                   }}
                 </h2>
               </ion-col>
@@ -93,7 +93,7 @@
             <ion-row class="ion-justify-content-center">
               <ion-col size="6" class="ion-text-center">
                 <ion-label color="medium" style="font-size: 0.85rem;">Saldo Inicial</ion-label>
-                <h2 style="color: #2b7a0b; font-size: 1rem;">{{ resumo?.saldoFinal | currency:
+                <h2 style="color: #2b7a0b; font-size: 1rem;">{{ resumo.saldoFinal | currency:
                   'BRL':'symbol':'1.2-2':'pt'
                   }}</h2>
               </ion-col>
@@ -101,7 +101,7 @@
               <ion-col size="6" class="ion-text-center">
                 <ion-label color="medium" style="font-size: 0.85rem;">Saldo Final</ion-label>
                 <h2 [style.color]="resumo.saldoFinal >= 0 ? '#2b7a0b' : '#e74c3c'" style="font-size: 1rem;">
-                  {{ resumo?.contaInvestimento | currency: 'BRL':'symbol':'1.2-2':'pt' }}
+                  {{ resumo.contaInvestimento | currency: 'BRL':'symbol':'1.2-2':'pt' }}
                 </h2>
               </ion-col>
             </ion-row>
