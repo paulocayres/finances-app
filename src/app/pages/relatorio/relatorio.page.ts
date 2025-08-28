@@ -20,6 +20,7 @@ interface Resumo {
 })
 export class RelatorioPage implements OnInit {
 
+
   filtroForm!: FormGroup;
   below = LegendPosition.Below
 
@@ -65,7 +66,11 @@ export class RelatorioPage implements OnInit {
       mesFinal: [null, Validators.required],
       anoFinal: [null, Validators.required]
     });
+ 
+    //view: [width, height] = [window.innerWidth - 20, 300]; // largura x altura
   }
+
+
 
   async gerarRelatorio() {
     if (this.filtroForm.invalid) {
@@ -143,4 +148,20 @@ export class RelatorioPage implements OnInit {
 
     this.lineChartData = [receitas, despesas, saldo];
   }
+
+  // formatarMoeda(value: number): string {
+  //   return 'R$ ' + value.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+  // }
+
+
+  formatarMoeda(value: number): string {
+  if (value >= 1000 || value <= -1000) return `${(value/1000).toFixed(0)}k`;
+  return `${value}`;
+}
+
+  formatarPeriodo(value: string): string {
+  const [ano, mes] = value.split('-'); // supondo formato "2025-01"
+  const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+  return `${meses[+mes - 1]}/${ano.slice(-2)}`;
+}
 }

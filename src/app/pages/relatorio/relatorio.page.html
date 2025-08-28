@@ -51,17 +51,65 @@
   </form>
 
   <ng-container *ngIf="lineChartData.length > 0">
-    <ngx-charts-line-chart [scheme]="colorScheme" [results]="lineChartData" [xAxis]="true" [yAxis]="true"
-      [legend]="true" [legendPosition]="below" [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Período'"
-      [yAxisLabel]="'Valor'" [autoScale]="true" [animations]="true">
+    <div style="display: flex; justify-content: flex-start;">
+      <ngx-charts-line-chart style="width: 95%; height: 600px;" [scheme]="colorScheme" [results]="lineChartData" [xAxis]="true" [yAxis]="true"
+        [legend]="true" [legendPosition]="below" [legendTitle]="'Legenda'" [showXAxisLabel]="true"
+        [showYAxisLabel]="false" [xAxisLabel]="'Período'" [yAxisLabel]="'Valor'" [autoScale]="true" [animations]="true"
+        [yAxisTickFormatting]="formatarMoeda" [xAxisTickFormatting]="formatarPeriodo" [rotateXAxisTicks]="true">
 
-    </ngx-charts-line-chart>
+      </ngx-charts-line-chart>
+    </div>
 
 
     <br>
     <br>
     <br>
-    <ion-card class="ion-margin-top">
+
+    <div style="display: flex; justify-content: center;">
+      <ion-card *ngIf="resumo" style="width: 100%; box-sizing: border-box;">
+        <ion-card-header>
+          <ion-card-title style="font-size: 1rem;">
+            <ion-icon name="calendar-outline" style="vertical-align: middle; margin-right: 8px;"></ion-icon>
+            Resumo do Período
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="ion-justify-content-center">
+
+              <ion-col size="6" class="ion-text-center">
+                <ion-label color="medium" style="font-size: 0.85rem;">Receitas</ion-label>
+                <h2 style="color: #1e90ff; font-size: 1rem;">{{ resumo?.receitas | currency: 'BRL':'symbol':'1.2-2':'pt'
+                  }}
+                </h2>
+              </ion-col>
+              <ion-col size="6" class="ion-text-center">
+                <ion-label color="medium" style="font-size: 0.85rem;">Despesas</ion-label>
+                <h2 style="color: #e74c3c; font-size: 1rem;">{{ resumo?.despesas | currency: 'BRL':'symbol':'1.2-2':'pt'
+                  }}
+                </h2>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="6" class="ion-text-center">
+                <ion-label color="medium" style="font-size: 0.85rem;">Saldo Inicial</ion-label>
+                <h2 style="color: #2b7a0b; font-size: 1rem;">{{ resumo?.saldoFinal | currency:
+                  'BRL':'symbol':'1.2-2':'pt'
+                  }}</h2>
+              </ion-col>
+
+              <ion-col size="6" class="ion-text-center">
+                <ion-label color="medium" style="font-size: 0.85rem;">Saldo Final</ion-label>
+                <h2 [style.color]="resumo.saldoFinal >= 0 ? '#2b7a0b' : '#e74c3c'" style="font-size: 1rem;">
+                  {{ resumo?.contaInvestimento | currency: 'BRL':'symbol':'1.2-2':'pt' }}
+                </h2>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <!-- <ion-card class="ion-margin-top">
       <ion-card-header>
         <ion-card-title>Resumo</ion-card-title>
       </ion-card-header>
@@ -71,7 +119,7 @@
         <p><strong>Saldo Final:</strong> {{ resumo?.saldoFinal | currency:'BRL' }}</p>
         <p><strong>Investimentos:</strong> {{ resumo?.contaInvestimento | currency:'BRL' }}</p>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
   </ng-container>
 
 </ion-content>
